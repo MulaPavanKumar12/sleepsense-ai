@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-midnight-950 text-dusk-300 font-body bg-stars;
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Fraunces", serif;
+}
+
+::selection {
+  background: #f4c978;
+  color: #0b0f2b;
+}
+
+.card {
+  @apply bg-midnight-900/80 border border-white/5 rounded-2xl shadow-xl backdrop-blur-sm;
+}
+
+.input-field {
+  @apply w-full bg-midnight-800/70 border border-white/10 rounded-lg px-3 py-2 text-sm text-dusk-100 placeholder-dusk-400/60 focus:outline-none focus:ring-2 focus:ring-moon-400/60;
+}
+
+.label-text {
+  @apply block text-xs uppercase tracking-wide text-dusk-400 mb-1;
+}
+
+.btn-primary {
+  @apply bg-moon-400 text-midnight-950 font-semibold px-5 py-2.5 rounded-lg hover:bg-moon-300 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-white/5 text-dusk-300 font-medium px-5 py-2.5 rounded-lg hover:bg-white/10 transition-colors border border-white/10;
+}

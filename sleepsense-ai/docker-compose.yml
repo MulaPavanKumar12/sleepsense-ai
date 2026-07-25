@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sleepsense
+      POSTGRES_PASSWORD: sleepsense
+      POSTGRES_DB: sleepsense
+    ports:
+      - "5432:5432"
+    volumes:
+      - sleepsense_pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://sleepsense:sleepsense@db:5432/sleepsense
+      SECRET_KEY: change-this-to-a-random-secret-key
+      ACCESS_TOKEN_EXPIRE_MINUTES: 1440
+      ALGORITHM: HS256
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+
+volumes:
+  sleepsense_pgdata:
